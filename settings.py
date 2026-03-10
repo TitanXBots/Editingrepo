@@ -93,23 +93,6 @@ async def settings_callback(client: Bot, callback_query):
             except:
                 pass
 
-        elif cb_data == "link_share":
-            btn = [
-                [InlineKeyboardButton("Aᴅᴅ Cʜᴀɴɴᴇʟ", callback_data="add_channel"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ Cʜᴀɴɴᴇʟ", callback_data="delete_channel")],
-                [InlineKeyboardButton("Nᴏʀᴍᴀʟ Lɪɴᴋs", callback_data="channel_links"), InlineKeyboardButton("Rᴇǫᴜᴇsᴛ Lɪɴᴋs", callback_data="request_links")],
-                [InlineKeyboardButton("Lɪsᴛ Cʜᴀɴɴᴇʟs", callback_data="list_channels")],
-                [InlineKeyboardButton("back", callback_data="settings_main")]]
-            await callback_query.message.edit_text("<blockquote><b><i>Iɴ ᴛʜɪs ʏᴏᴜ ᴄᴀɴ ᴄʜᴀɴɢᴇ ᴀɴᴅ ᴠɪᴇᴡ ʏᴏᴜʀs ᴄʜᴀɴɴᴇʟs...!!</i></b></blockquote>", reply_markup=InlineKeyboardMarkup(btn))
-
-        elif cb_data == "view_status":
-            total_users = await Seishiro.total_users_count()
-            # Calculate uptime properly using datetime
-            current_time = datetime.now()
-            uptime_delta = current_time - client.uptime
-            uptime_seconds = uptime_delta.total_seconds()
-            uptime = time.strftime("%Hh%Mm%Ss", time.gmtime(uptime_seconds))
-            await callback_query.answer(f"•Bᴏᴛ ᴜᴘᴛɪᴍᴇ: {uptime}\n•Tᴏᴛᴀʟ ᴜsᴇʀs: {total_users}\n•Vᴇʀsɪᴏɴ: 2.05v", show_alert=True)
-            
         elif cb_data == "about":
             user = await client.get_users(OWNER_ID)
             await callback_query.edit_message_media(
